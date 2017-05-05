@@ -43,6 +43,8 @@ module Noft
     attr_accessor :license
     # The url of the license
     attr_accessor :license_url
+    # The local filename of the font file
+    attr_accessor :font_file
 
     def write_to(filename)
       File.write(filename, JSON.pretty_generate(to_h) + "\n")
@@ -155,6 +157,7 @@ Noft.icon_set(:fa) do |s|
   s.url = 'http://fontawesome.io'
   s.license = 'SIL Open Font License (OFL)'
   s.license_url = 'http://scripts.sil.org/OFL'
+  s.font_file = svg_font_filename
 
   #p YAML.load_file(icon_metadata_filename)
   YAML.load_file(icon_metadata_filename)['icons'].each do |entry|
