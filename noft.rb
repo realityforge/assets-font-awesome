@@ -97,6 +97,30 @@ module Noft
       data
     end
   end
+
+  class FontBlast < Schmooze::Base
+    dependencies fontBlast: 'font-blast'
+
+    method :blast, 'function(fontFile, destinationFolder, userConfig) {fontBlast(fontFile, destinationFolder, userConfig);}'
+  end
+
+  class Generator
+    class << self
+      def generate_assets(icon_set, output_directory)
+        FileUtils.rm_rf output_directory
+
+        # Generate filename mapping
+        filenames = {}
+        icon_set.icons.each { |icon| filenames[icon.unicode] = icon.name }
+
+        # Actually run the font blast to extract out the svg files
+        Noft::FontBlast.new(Dir.pwd).blast(icon_set.font_file, output_directory, { :filenames => filenames })
+
+        # Output the metadata
+        icon_set.write_to("#{output_directory}/svg/fonts.json")
+      end
+    end
+  end
 end
 
 INPUT_VERSION='4.7.0'
