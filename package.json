@@ -1,0 +1,10 @@
+{
+  "name": "assets-font-awesome",
+  "version": "1.0.0",
+  "description": "A set of svgs extracted from font-awesome fonts",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "font-blast": "^0.6.1"
+  }
+}
