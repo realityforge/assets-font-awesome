@@ -175,6 +175,6 @@ end
 
 
 output_directory = OUTPUT_DIRECTORY
-FileUtils.mkdir_p output_directory
 icon_set = Noft.icon_set_by_name(:fa)
-icon_set.write_to("#{output_directory}/fonts.json")
+
+Noft::Generator.generate_assets(icon_set, output_directory)
