@@ -17,6 +17,7 @@
 require 'json'
 require 'reality/logging'
 require 'reality/model'
+require 'reality/naming'
 require 'fileutils'
 require 'schmooze'
 
