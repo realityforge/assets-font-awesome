@@ -88,7 +88,7 @@ module Noft
     end
 
     def to_h
-      data = { :name => self.name }
+      data = {}
       data[:display_string] = self.display_string if self.display_string
       data[:description] = self.description if self.description
       data[:aliases] = self.aliases unless self.aliases.empty?
