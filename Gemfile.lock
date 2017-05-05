@@ -21,6 +21,7 @@ GEM
       reality-orderedhash (>= 1.0.0)
     reality-naming (1.8.0)
     reality-orderedhash (1.0.0)
+    schmooze (0.1.6)
 
 PLATFORMS
   ruby
@@ -28,6 +29,7 @@ PLATFORMS
 DEPENDENCIES
   braid (= 1.0.18)
   reality-model (>= 1.0.0)
+  schmooze (= 0.1.6)
 
 BUNDLED WITH
    1.13.6

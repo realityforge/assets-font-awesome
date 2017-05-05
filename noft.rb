@@ -18,6 +18,7 @@ require 'json'
 require 'reality/logging'
 require 'reality/model'
 require 'fileutils'
+require 'schmooze'
 
 # noft is a script to pull down fonts and extract them into svg assets that can be used as desired.
 
