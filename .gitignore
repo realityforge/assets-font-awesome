@@ -1,0 +1,5 @@
+*.iml
+/*.ids
+/*.ipr
+/*.iws
+/tmp
