@@ -1,3 +1,15 @@
+PATH
+  remote: vendor/tools/noft
+  specs:
+    noft (1.0.0)
+      reality-core (>= 1.6.0)
+      reality-facets (>= 1.7.0)
+      reality-generators (>= 1.6.0)
+      reality-model (>= 1.1.0)
+      reality-naming (>= 1.9.0)
+      reality-orderedhash (>= 1.0.0)
+      schmooze (= 0.1.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -15,6 +27,14 @@ GEM
     map (6.6.0)
     open4 (1.3.4)
     reality-core (1.7.0)
+    reality-facets (1.7.0)
+      reality-core (>= 1.6.0)
+      reality-naming (>= 1.6.0)
+      reality-orderedhash (>= 1.0.0)
+    reality-generators (1.6.0)
+      reality-core (>= 1.7.0)
+      reality-naming (>= 1.6.0)
+      reality-orderedhash (>= 1.0.0)
     reality-model (1.1.0)
       reality-core (>= 1.7.0)
       reality-naming (>= 1.6.0)
@@ -28,9 +48,7 @@ PLATFORMS
 
 DEPENDENCIES
   braid (= 1.0.18)
-  reality-model (>= 1.0.0)
-  reality-naming (>= 1.9.0)
-  schmooze (= 0.1.6)
+  noft (= 1.0.0)!
 
 BUNDLED WITH
    1.13.6
