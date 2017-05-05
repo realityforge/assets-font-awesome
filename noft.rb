@@ -161,8 +161,11 @@ Noft.icon_set(:fa) do |s|
 
   #p YAML.load_file(icon_metadata_filename)
   YAML.load_file(icon_metadata_filename)['icons'].each do |entry|
-    s.icon(entry['id']) do |i|
-      i.display_string = entry['name'] unless entry['name'] == entry['id']
+    name = entry['id'].gsub(/-o$/,'-outlined').gsub(/-o-/,'-outlined-')
+
+    s.icon(name) do |i|
+      i.display_string = entry['name'] unless entry['name'] == name || entry['name'] == Reality::Naming.humanize(name)
+      i.unicode = entry['unicode']
       entry['aliases'].each do |a|
         i.aliases << a
       end if entry['aliases']
