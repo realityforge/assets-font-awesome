@@ -44,10 +44,7 @@ module Noft
     attr_accessor :license_url
 
     def write_to(filename)
-      File.open(filename, 'wb') do |f|
-        f.write JSON.pretty_generate(to_h)
-        f.write "\n"
-      end
+      File.write(filename, JSON.pretty_generate(to_h) + "\n")
     end
 
     def to_h
