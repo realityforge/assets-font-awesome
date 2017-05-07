@@ -41,7 +41,7 @@ Noft.icon_set(:fa) do |s|
   s.font_file = svg_font_filename
 
   YAML.load_file(icon_metadata_filename)['icons'].each do |entry|
-    name = entry['id'].gsub(/-o$/,'-outlined').gsub(/-o-/,'-outlined-')
+    name = entry['id'].gsub(/-o$/, '-outlined').gsub(/-o-/, '-outlined-')
 
     s.icon(name) do |i|
       i.display_string = entry['name'] unless entry['name'] == name || entry['name'] == Reality::Naming.humanize(name)
