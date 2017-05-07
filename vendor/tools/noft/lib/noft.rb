@@ -25,3 +25,5 @@ require 'reality/naming'
 require 'noft/core'
 require 'noft/model'
 require 'noft/generator'
+
+require 'noft/rake_tasks'
