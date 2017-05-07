@@ -4,7 +4,7 @@
   "description": "A set of svgs extracted from font-awesome fonts",
   "author": "",
   "license": "",
-  "dependencies": {
+  "devDependencies": {
     "font-blast": "^0.6.1"
   }
 }
