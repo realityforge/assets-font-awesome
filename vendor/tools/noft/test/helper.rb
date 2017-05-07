@@ -41,12 +41,12 @@ class Noft::TestCase < Minitest::Test
   def setup_node_modules
     node_modules_present = File.exist?(self.node_modules_dir)
     FileUtils.mkdir_p self.node_modules_dir
-    FileUtils.link(self.node_modules_dir, "#{self.working_dir}/node_modules")
+    FileUtils.ln_s(self.node_modules_dir, self.local_node_modules_dir)
     system('npm install') unless node_modules_present
   end
 
   def unlink_node_modules
-    FileUtils.rm("#{self.working_dir}/node_modules")
+    FileUtils.rm(self.local_node_modules_dir) if File.exist?(self.local_node_modules_dir)
   end
 
   def create_file(filename, content)
@@ -70,6 +70,10 @@ class Noft::TestCase < Minitest::Test
 
   def node_modules_dir
     @node_modules_dir ||= "#{workspace_dir}/node_modules"
+  end
+
+  def local_node_modules_dir
+    "#{self.working_dir}/node_modules"
   end
 
   # The base test directory
