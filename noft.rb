@@ -40,6 +40,7 @@ Noft.icon_set(:fa) do |s|
   s.license_url = 'http://scripts.sil.org/OFL'
   s.font_file = svg_font_filename
 
+  #scan font descriptor for required metadata
   YAML.load_file(icon_metadata_filename)['icons'].each do |entry|
     name = entry['id'].gsub(/-o$/, '-outlined').gsub(/-o-/, '-outlined-')
 
