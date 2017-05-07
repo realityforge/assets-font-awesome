@@ -4,3 +4,5 @@
 *.textile text -crlf -binary
 *.txt text -crlf -binary
 *.erb text -crlf -binary
+*.svg text -crlf -binary
+*.json text -crlf -binary
