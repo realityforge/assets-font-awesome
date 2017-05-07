@@ -54,7 +54,4 @@ Noft.icon_set(:fa) do |s|
 end
 
 
-output_directory = OUTPUT_DIRECTORY
-icon_set = Noft.icon_set_by_name(:fa)
 
-Noft::Generator.generate_assets(icon_set, output_directory)
