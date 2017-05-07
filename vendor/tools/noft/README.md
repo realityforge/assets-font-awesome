@@ -27,7 +27,7 @@ result our applications would have 100s or 1000s of unused css classes and unuse
 like [GWT](http://www.gwtproject.org/) this also necessitated 1000s of lines of unused java code for
 `CssResource` bundles. All of this slowed down development time and increased the size of assets downloaded
 by web clients. In some cases we were forced to manually remove unused css classes, font glyphs and java methods
-but it was labour intensive (and thus expensive), somewhat error prone and extremely boring. 
+but it was labour intensive (and thus expensive), somewhat error prone and extremely boring.
 
 Looking towards the architecture of future applications we came across several articles about moving from
 icon fonts to svg. In particular the article["Making the Switch Away from Icon Fonts to SVG: Converting Font Icons to SVG"](https://sarasoueidan.com/blog/icon-fonts-to-svg/) by Sara
@@ -49,7 +49,7 @@ decipherable to outside parties.
   GitHub implementaiton of similar concept https://github.com/blog/2112-delivering-octicons-with-svg
 * Generate React helper for the same.
 
-* Add documentation describing full process 
+* Add documentation describing full process
 * Link to font-awesome usage of this librar and possible demonstrate using other examples from other font libraries
   not unlike https://github.com/eugene1g/font-blast-examples
 
