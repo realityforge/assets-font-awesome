@@ -24,13 +24,6 @@ OUTPUT_DIRECTORY = 'assets'
 BASE_WORKING_DIRECTORY = 'tmp/working'
 WORKING_DIRECTORY = "#{BASE_WORKING_DIRECTORY}/#{INPUT_VERSION}"
 
-icon_metadata_filename = "#{WORKING_DIRECTORY}/icons.yml"
-svg_font_filename = "#{WORKING_DIRECTORY}/fontawesome-webfont.svg"
-download_file("https://raw.githubusercontent.com/FortAwesome/Font-Awesome/v#{INPUT_VERSION}/src/icons.yml",
-              icon_metadata_filename)
-download_file("https://raw.githubusercontent.com/FortAwesome/Font-Awesome/v#{INPUT_VERSION}/fonts/fontawesome-webfont.svg",
-              svg_font_filename)
-
 Noft.icon_set(:fa) do |s|
   s.display_string = 'Font Awesome'
   s.description = 'The iconic font and CSS toolkit'
@@ -38,7 +31,15 @@ Noft.icon_set(:fa) do |s|
   s.url = 'http://fontawesome.io'
   s.license = 'SIL Open Font License (OFL)'
   s.license_url = 'http://scripts.sil.org/OFL'
-  s.font_file = svg_font_filename
+  s.font_file = "#{WORKING_DIRECTORY}/fontawesome-webfont.svg"
+
+  icon_metadata_filename = "#{WORKING_DIRECTORY}/icons.yml"
+
+  # Download font assets
+  NoftPlus::Util.download_file("https://raw.githubusercontent.com/FortAwesome/Font-Awesome/v#{INPUT_VERSION}/src/icons.yml",
+                               icon_metadata_filename)
+  NoftPlus::Util.download_file("https://raw.githubusercontent.com/FortAwesome/Font-Awesome/v#{INPUT_VERSION}/fonts/fontawesome-webfont.svg",
+                             s.font_file)
 
   #scan font descriptor for required metadata
   YAML.load_file(icon_metadata_filename)['icons'].each do |entry|
