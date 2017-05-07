@@ -3,7 +3,19 @@
 [![Build Status](https://secure.travis-ci.org/realityforge/noft.png?branch=master)](http://travis-ci.org/realityforge/noft)
 
 `noft` is a tool to extract svg icons from icon fonts and generate helpers to render the icons
-in different web frameworks.
+in different web frameworks. `noft` automates
+
+# Getting Started
+
+Noft makes extensive use of the [font-blast](https://www.npmjs.com/package/font-blast) node package. To use this
+tool it is expected that you have installed Node and NPM. See [https://www.npmjs.com/get-npm](https://www.npmjs.com/get-npm)
+if that is not the case. Then you need to install `font-blast`. This may require the following steps:
+
+    # If your project does not yet have NPMs package.json file present
+    $ npm init
+
+    # Install font-blast
+    $ npm install font-blast --save-dev
 
 ## Motivation
 
@@ -23,3 +35,22 @@ Soueidan and the article ["Delivering Octicons with SVG"](https://github.com/blo
 from GitHub about their move away from font icons motivated us to make the switch. Unwilling to lose the investment
 in our current icons we created this tool to help automate the conversion of our current icons to helpers that
 injected icons where we needed it.
+
+## TODO
+
+Here are a bunch of TODO notes. They are just pointers to the authors about work not yet done and may not be
+decipherable to outside parties.
+
+* Add generator that generates a html view page like Font-Awesomes.
+* Add simple way to generate a github site that publishes this index page as GitHub site.
+
+* Generate a GWT helper that generates methods that emit SafeHtml for each svg icon. The generated svg
+  should probably be patched to allow setting width, height, aria-hidden=true, aria-role=img. See the
+  GitHub implementaiton of similar concept https://github.com/blog/2112-delivering-octicons-with-svg
+* Generate React helper for the same.
+
+* Add documentation describing full process 
+* Link to font-awesome usage of this librar and possible demonstrate using other examples from other font libraries
+  not unlike https://github.com/eugene1g/font-blast-examples
+
+* Figure out a mechanism for bringing in css classes not unlike in FontAwesome https://github.com/FortAwesome/Font-Awesome/tree/master/scss
