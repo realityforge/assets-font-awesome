@@ -21,7 +21,8 @@ module Noft
 
   module Generator
     class << self
-      def generate_assets(icon_set, output_directory)
+      def generate_assets(icon_set_name, output_directory)
+        icon_set = Noft.font_set_by_name(icon_set_name)
         FileUtils.rm_rf output_directory
 
         # Generate filename mapping

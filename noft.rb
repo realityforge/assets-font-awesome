@@ -16,23 +16,13 @@
 
 require 'rubygems'
 require 'bundler/setup'
-require 'noft'
-require 'uri'
-require 'net/http'
+require 'noft_plus'
 require 'yaml'
 
 INPUT_VERSION='4.7.0'
 OUTPUT_DIRECTORY = 'assets'
 BASE_WORKING_DIRECTORY = 'tmp/working'
 WORKING_DIRECTORY = "#{BASE_WORKING_DIRECTORY}/#{INPUT_VERSION}"
-
-FileUtils.mkdir_p WORKING_DIRECTORY
-
-def download_file(url, target_filename)
-  unless File.exist?(target_filename)
-    File.write(target_filename, Net::HTTP.get(URI(url)))
-  end
-end
 
 icon_metadata_filename = "#{WORKING_DIRECTORY}/icons.yml"
 svg_font_filename = "#{WORKING_DIRECTORY}/fontawesome-webfont.svg"
