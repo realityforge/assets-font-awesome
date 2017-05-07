@@ -1,5 +1,6 @@
 $:.unshift File.expand_path('../../lib', __FILE__)
 
+require 'securerandom'
 require 'minitest/autorun'
 require 'test/unit/assertions'
 require 'noft'
@@ -30,7 +31,11 @@ class Noft::TestCase < Minitest::Test
   def teardown
     self.unlink_node_modules
     Dir.chdir(@cwd)
-    FileUtils.rm_rf self.working_dir if File.exist?(self.working_dir)
+    if passed?
+      FileUtils.rm_rf self.working_dir if File.exist?(self.working_dir)
+    else
+      $stderr.puts "Test #{self.class.name}.#{name} Failed. Leaving working directory #{self.working_dir}"
+    end
   end
 
   def setup_node_modules
@@ -65,6 +70,33 @@ class Noft::TestCase < Minitest::Test
 
   def node_modules_dir
     @node_modules_dir ||= "#{workspace_dir}/node_modules"
+  end
+
+  # The base test directory
+  def test_dir
+    @test_dir ||= File.expand_path("#{File.dirname(__FILE__)}")
+  end
+
+  # The fixtures directory
+  def fixture_dir
+    "#{test_dir}/fixtures"
+  end
+
+  def fixture(filename)
+    "#{fixture_dir}/#{filename}"
+  end
+
+  def load_sample1_icon_set
+    # Load data from fixture json and make sure we link up all the non persisted attributes
+
+    icon_set = Noft.read_model(fixture('sample1.json'))
+    icon_set.font_file = fixture('sample1.svg')
+
+    icon_set.icon_by_name('fire-extinguisher').unicode = 'f100'
+    icon_set.icon_by_name('fire-symbol').unicode = 'f101'
+    icon_set.icon_by_name('fire').unicode = 'f102'
+
+    icon_set
   end
 
   def package_json

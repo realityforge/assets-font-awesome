@@ -25,6 +25,12 @@ module Noft
         icon_set = Noft.icon_set_by_name(icon_set_name)
         FileUtils.rm_rf output_directory
 
+        metadata_file = "#{output_directory}/svg/fonts.json"
+
+        FileUtils.mkdir_p File.dirname(metadata_file)
+
+        icon_set.write_to(metadata_file)
+
         # Generate filename mapping
         filenames = {}
         icon_set.icons.each { |icon| filenames[icon.unicode] = icon.name }
@@ -32,8 +38,25 @@ module Noft
         # Actually run the font blast to extract out the svg files
         Noft::FontBlast.new(Dir.pwd).blast(icon_set.font_file, output_directory, { :filenames => filenames })
 
-        # Output the metadata
-        icon_set.write_to("#{output_directory}/svg/fonts.json")
+        # Node writes the file asynchronously. This needs to be in place to ensure
+        # all the files are written as it is the last file to be generated
+        wait_until { File.exist?("#{output_directory}/verify.html") }
+
+        output_directory
+      end
+
+      private
+
+      def wait_until(count = 100000, &block)
+        i = count
+        while i > 0
+          if block.call
+            break
+          else
+            i -= 1
+            Thread.pass
+          end
+        end
       end
     end
   end
