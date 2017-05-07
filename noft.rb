@@ -56,5 +56,3 @@ Noft.icon_set(:fa) do |s|
 end
 
 Noft::Generator.generate_assets(:fa, OUTPUT_DIRECTORY)
-
-
