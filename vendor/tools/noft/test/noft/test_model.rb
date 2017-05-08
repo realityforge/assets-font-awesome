@@ -99,4 +99,14 @@ class TestModel < Noft::TestCase
     assert_equal nil, icon_set_2.icon_by_name('map-marker').unicode
     assert_equal nil, icon_set_2.icon_by_name('cross').unicode
   end
+
+  def test_font_file?
+    Noft.icon_set(:fa) do |s|
+      assert_false s.font_file?
+
+      s.font_file = 'webfont.svg'
+
+      assert_true s.font_file?
+    end
+  end
 end

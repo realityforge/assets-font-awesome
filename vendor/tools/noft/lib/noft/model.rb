@@ -80,7 +80,7 @@ module Noft
       attr_accessor :font_file
 
       def font_file?
-        !@font_file.nil?
+        !(@font_file ||= nil).nil?
       end
 
       def write_to(filename)

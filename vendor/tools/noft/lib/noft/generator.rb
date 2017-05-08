@@ -46,7 +46,7 @@ module Noft
         # then we can assume that there is no actual change, just a result of the underlying svg2ttf
         # tool not giving a stable output given stable input. Unclear where the fault lies. In this
         # scenario just reset the file
-        output = `git status  -s #{output_directory}`
+        output = `git status -s #{output_directory}`
         if output.split("\n").size == 1 &&
           -1 != (output =~ /^ M .*\/assets\/#{icon_set_name}\/source-font.ttf$/)
           `git checkout #{output_directory}/source-font.ttf`

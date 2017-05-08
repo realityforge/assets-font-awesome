@@ -42,7 +42,8 @@ Here are a bunch of TODO notes. They are just pointers to the authors about work
 decipherable to outside parties.
 
 * Add commandline tool that does the loading of `noft.rb` and runs specified `generators`
-
+* Add tests for base generators
+* Add tests for reset of unchanged ttf file in `noft/generator`
 * Add generator that generates a html view page like Font-Awesomes.
 * Add simple way to generate a github site that publishes this index page as GitHub site.
 
