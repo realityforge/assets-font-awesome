@@ -36,7 +36,7 @@ module Noft
         icon_set.icons.each { |icon| filenames[icon.unicode] = icon.name }
 
         # Actually run the font blast to extract out the svg files
-        Noft::FontBlast.new(output_directory).blast(icon_set.font_file, output_directory, { :filenames => filenames })
+        Noft::FontBlast.new('.').blast(icon_set.font_file, output_directory, { :filenames => filenames })
 
         # Node writes the file asynchronously. This needs to be in place to ensure
         # all the files are written as it is the last file to be generated
