@@ -41,6 +41,8 @@ injected icons where we needed it.
 Here are a bunch of TODO notes. They are just pointers to the authors about work not yet done and may not be
 decipherable to outside parties.
 
+* Add commandline tool that does the loading of `noft.rb` and runs specified `generators`
+
 * Add generator that generates a html view page like Font-Awesomes.
 * Add simple way to generate a github site that publishes this index page as GitHub site.
 
@@ -50,7 +52,7 @@ decipherable to outside parties.
 * Generate React helper for the same.
 
 * Add documentation describing full process
-* Link to font-awesome usage of this librar and possible demonstrate using other examples from other font libraries
+* Link to font-awesome usage of this library and possible demonstrate using other examples from other font libraries
   not unlike https://github.com/eugene1g/font-blast-examples
 
 * Figure out a mechanism for bringing in css classes not unlike in FontAwesome https://github.com/FortAwesome/Font-Awesome/tree/master/scss
