@@ -50,6 +50,8 @@ module Noft
     r.model_element(:icon, :icon_set)
   end
 
+  Reality::Facets.copy_targets_to_generator_target_manager(Noft::Generator, Noft::FacetManager)
+
   class << self
     def read_model(filename)
       data = JSON.parse(IO.read(filename))
@@ -76,6 +78,10 @@ module Noft
       attr_accessor :license_url
       # The local filename of the font file
       attr_accessor :font_file
+
+      def font_file?
+        !@font_file.nil?
+      end
 
       def write_to(filename)
         File.write(filename, JSON.pretty_generate(to_h) + "\n")

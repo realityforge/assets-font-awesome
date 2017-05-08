@@ -27,3 +27,6 @@ require 'noft/model'
 require 'noft/generator'
 
 require 'noft/rake_tasks'
+
+require 'noft/base/templates/assets'
+require 'noft/base/model'
