@@ -42,6 +42,16 @@ module Noft
         # all the files are written as it is the last file to be generated
         wait_until { File.exist?("#{output_directory}/verify.html") }
 
+        # if the assets are stored in git and the only file that is modified is source-font.ttf
+        # then we can assume that there is no actual change, just a result of the underlying svg2ttf
+        # tool not giving a stable output given stable input. Unclear where the fault lies. In this
+        # scenario just reset the file
+        output = `git status  -s #{output_directory}`
+        if output.split("\n").size == 1 &&
+          -1 != (output =~ /^ M .*\/assets\/#{icon_set_name}\/source-font.ttf$/)
+          `git checkout #{output_directory}/source-font.ttf`
+        end
+
         output_directory
       end
 
