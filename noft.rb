@@ -20,7 +20,7 @@ require 'noft_plus'
 require 'yaml'
 
 INPUT_VERSION='4.7.0'
-BASE_WORKING_DIRECTORY = 'tmp/working'
+BASE_WORKING_DIRECTORY = File.expand_path('tmp/working')
 WORKING_DIRECTORY = "#{BASE_WORKING_DIRECTORY}/#{INPUT_VERSION}"
 
 Noft.icon_set(:fa) do |s|
@@ -38,7 +38,7 @@ Noft.icon_set(:fa) do |s|
   NoftPlus::Util.download_file("https://raw.githubusercontent.com/FortAwesome/Font-Awesome/v#{INPUT_VERSION}/src/icons.yml",
                                icon_metadata_filename)
   NoftPlus::Util.download_file("https://raw.githubusercontent.com/FortAwesome/Font-Awesome/v#{INPUT_VERSION}/fonts/fontawesome-webfont.svg",
-                             s.font_file)
+                               s.font_file)
 
   #scan font descriptor for required metadata
   YAML.load_file(icon_metadata_filename)['icons'].each do |entry|
