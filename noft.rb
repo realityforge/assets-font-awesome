@@ -20,7 +20,6 @@ require 'noft_plus'
 require 'yaml'
 
 INPUT_VERSION='4.7.0'
-OUTPUT_DIRECTORY = 'assets'
 BASE_WORKING_DIRECTORY = 'tmp/working'
 WORKING_DIRECTORY = "#{BASE_WORKING_DIRECTORY}/#{INPUT_VERSION}"
 
@@ -54,5 +53,3 @@ Noft.icon_set(:fa) do |s|
     end
   end
 end
-
-Noft::Generator.generate_assets(:fa, OUTPUT_DIRECTORY)
