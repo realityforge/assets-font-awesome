@@ -37,5 +37,3 @@ module Noft
     end
   end
 end
-
-
