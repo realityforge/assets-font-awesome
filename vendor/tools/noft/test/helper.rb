@@ -60,6 +60,10 @@ class Noft::TestCase < Minitest::Test
     "#{working_dir}/#{SecureRandom.hex}#{extension}"
   end
 
+  def local_dir(directory)
+    "#{working_dir}/#{directory}"
+  end
+
   def working_dir
     @working_dir ||= "#{workspace_dir}/#{SecureRandom.hex}"
   end
@@ -86,14 +90,14 @@ class Noft::TestCase < Minitest::Test
     "#{test_dir}/fixtures"
   end
 
-  def fixture(filename)
-    "#{fixture_dir}/#{filename}"
+  def fixture(fixture_name)
+    "#{fixture_dir}/#{fixture_name}"
   end
 
   def load_sample1_icon_set
     # Load data from fixture json and make sure we link up all the non persisted attributes
 
-    icon_set = Noft.read_model(fixture('sample1/fonts.json'))
+    icon_set = Noft.read_model(fixture('sample1/dist/fonts.json'))
     icon_set.font_file = fixture('sample1/webfont.svg')
 
     icon_set.icon_by_name('fire-extinguisher').unicode = 'f100'
@@ -101,6 +105,39 @@ class Noft::TestCase < Minitest::Test
     icon_set.icon_by_name('fire').unicode = 'f102'
 
     icon_set
+  end
+
+  def in_dir(dir)
+    Dir.chdir(dir)
+    yield
+  end
+
+  def run_command(command)
+    output = `#{command}`
+    raise "Error executing command: #{command}\nOutput: #{output}" unless $?.success?
+    output
+  end
+
+  def update_dir_from_fixture(dir, fixture_name)
+    FileUtils.mkdir_p(dir)
+    FileUtils.cp_r("#{fixture(fixture_name)}/.", dir)
+  end
+
+  def create_git_repo_from_fixture(fixture_name, options = {})
+    git_repo = options[:directory].nil? ? local_dir(fixture_name) : options[:directory]
+    create_git_repo(git_repo) do |dir|
+      update_dir_from_fixture(dir, fixture_name)
+    end
+  end
+
+  def create_git_repo(directory, &block)
+    FileUtils.mkdir_p directory
+    in_dir(directory) do
+      run_command('git init')
+      block.call(directory)
+      run_command('git add *')
+      run_command("git commit -m \"initial commit\"")
+    end
   end
 
   def package_json

@@ -25,7 +25,7 @@ module Noft
         icon_set = Noft.icon_set_by_name(icon_set_name)
         FileUtils.rm_rf output_directory
 
-        metadata_file = "#{output_directory}/svg/fonts.json"
+        metadata_file = "#{output_directory}/fonts.json"
 
         FileUtils.mkdir_p File.dirname(metadata_file)
 
@@ -36,26 +36,36 @@ module Noft
         icon_set.icons.each { |icon| filenames[icon.unicode] = icon.name }
 
         # Actually run the font blast to extract out the svg files
-        Noft::FontBlast.new(Dir.pwd).blast(icon_set.font_file, output_directory, { :filenames => filenames })
+        Noft::FontBlast.new(output_directory).blast(icon_set.font_file, output_directory, { :filenames => filenames })
 
         # Node writes the file asynchronously. This needs to be in place to ensure
         # all the files are written as it is the last file to be generated
         wait_until { File.exist?("#{output_directory}/verify.html") }
 
-        # if the assets are stored in git and the only file that is modified is source-font.ttf
-        # then we can assume that there is no actual change, just a result of the underlying svg2ttf
-        # tool not giving a stable output given stable input. Unclear where the fault lies. In this
-        # scenario just reset the file
-        output = `git status -s #{output_directory}`
-        if output.split("\n").size == 1 &&
-          -1 != (output =~ /^ M .*\/assets\/#{icon_set_name}\/source-font.ttf$/)
-          `git checkout #{output_directory}/source-font.ttf`
-        end
+        FileUtils.rm "#{output_directory}/verify.html"
+        FileUtils.mv "#{output_directory}/source-font.ttf", "#{output_directory}/font.ttf"
+        FileUtils.mv Dir["#{output_directory}/svg/*.svg"], output_directory
+
+        reset_state_if_unchanged(output_directory)
 
         output_directory
       end
 
       private
+
+      # if the assets are stored in git and the only file that is modified is font.ttf
+      # then we can assume that there is no actual change, just a result of the underlying svg2ttf
+      # tool not giving a stable output given stable input. Unclear where the fault lies. In this
+      # scenario just reset the file.
+      # Note: svg2ttf uses current date for some fields even if you pass in a date. Also font-blast
+      # does not pass in a date.
+      def reset_state_if_unchanged(output_directory)
+        output = `git status -s #{output_directory}`
+        if output.split("\n").size == 1 &&
+          -1 != (output =~ /^ M (.*\/)font.ttf$/)
+          `git checkout #{output_directory}/font.ttf`
+        end
+      end
 
       def wait_until(count = 100000, &block)
         i = count
