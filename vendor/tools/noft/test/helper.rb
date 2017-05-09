@@ -107,6 +107,33 @@ class Noft::TestCase < Minitest::Test
     icon_set
   end
 
+  def assert_sample1_dist_output(output_directory)
+    assert_dist_output(output_directory, 'sample1')
+  end
+
+  def assert_dist_output(output_directory, fixture_name)
+    assert_fixture_matches_output("#{fixture_name}/dist/fire.svg", "#{output_directory}/fire.svg")
+    assert_fixture_matches_output("#{fixture_name}/dist/fire-extinguisher.svg", "#{output_directory}/fire-extinguisher.svg")
+    assert_fixture_matches_output("#{fixture_name}/dist/fire-symbol.svg", "#{output_directory}/fire-symbol.svg")
+    assert_fixture_matches_output("#{fixture_name}/dist/fonts.json", "#{output_directory}/fonts.json")
+
+    assert_true File.exist?("#{output_directory}/font.ttf")
+    assert_false File.exist?("#{output_directory}/verify.html")
+    assert_false File.exist?("#{output_directory}/source-font.ttf")
+    assert_false File.exist?("#{output_directory}/svg")
+  end
+
+  def assert_fixture_matches_output(fixture_name, output_filename)
+    assert_equal true, File.exist?(output_filename), "Expected filename to be created #{output_filename}"
+    assert_equal IO.read(fixture(fixture_name)), IO.read(output_filename), "Content generated into #{output_filename}"
+  end
+
+  def run_generators(template_set_keys, icon_set, target_dir = local_dir(SecureRandom.hex), filter = nil)
+    templates = Noft::Generator.generator.load_templates_from_template_sets(template_set_keys)
+    Noft::Generator.generator.generate(:icon_set, icon_set, target_dir, templates, filter)
+    target_dir
+  end
+
   def in_dir(dir)
     Dir.chdir(dir)
     yield

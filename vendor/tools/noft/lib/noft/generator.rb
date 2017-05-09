@@ -45,6 +45,7 @@ module Noft
         FileUtils.rm "#{output_directory}/verify.html"
         FileUtils.mv "#{output_directory}/source-font.ttf", "#{output_directory}/font.ttf"
         FileUtils.mv Dir["#{output_directory}/svg/*.svg"], output_directory
+        FileUtils.rmdir "#{output_directory}/svg"
 
         reset_state_if_unchanged(output_directory)
 

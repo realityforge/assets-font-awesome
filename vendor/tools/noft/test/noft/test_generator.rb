@@ -7,14 +7,7 @@ class TestGenerator < Noft::TestCase
     output_directory = local_dir('assets')
     Noft::Generator.generate_assets(icon_set.name, output_directory)
 
-    assert_fixture_matches_output('sample1/dist/fire.svg', "#{output_directory}/fire.svg")
-    assert_fixture_matches_output('sample1/dist/fire-extinguisher.svg', "#{output_directory}/fire-extinguisher.svg")
-    assert_fixture_matches_output('sample1/dist/fire-symbol.svg', "#{output_directory}/fire-symbol.svg")
-    assert_fixture_matches_output('sample1/dist/fonts.json', "#{output_directory}/fonts.json")
-
-    assert_true File.exist?("#{output_directory}/font.ttf")
-    assert_false File.exist?("#{output_directory}/verify.html")
-    assert_false File.exist?("#{output_directory}/source-font.ttf")
+    assert_sample1_dist_output(output_directory)
   end
 
   def test_generate_assets_with_existing_assets_in_place
@@ -30,14 +23,7 @@ class TestGenerator < Noft::TestCase
 
     Noft::Generator.generate_assets(icon_set.name, output_directory)
 
-    assert_fixture_matches_output('sample1/dist/fire.svg', "#{output_directory}/fire.svg")
-    assert_fixture_matches_output('sample1/dist/fire-extinguisher.svg', "#{output_directory}/fire-extinguisher.svg")
-    assert_fixture_matches_output('sample1/dist/fire-symbol.svg', "#{output_directory}/fire-symbol.svg")
-    assert_fixture_matches_output('sample1/dist/fonts.json', "#{output_directory}/fonts.json")
-
-    assert_true File.exist?("#{output_directory}/font.ttf")
-    assert_false File.exist?("#{output_directory}/source-font.ttf")
-    assert_false File.exist?("#{output_directory}/verify.html")
+    assert_sample1_dist_output(output_directory)
 
     in_dir(git_dir) do
       assert_equal '', run_command('git status -s')
@@ -52,15 +38,10 @@ class TestGenerator < Noft::TestCase
     end
 
     in_dir(git_dir) do
-      File.write('font.ttf','other content')
+      File.write('font.ttf', 'other content')
       assert_equal " M font.ttf\n", run_command('git status -s')
       Noft::Generator.send(:reset_state_if_unchanged, git_dir)
       assert_equal '', run_command('git status -s')
     end
-  end
-
-  def assert_fixture_matches_output(fixture_name, output_filename)
-    assert_equal true, File.exist?(output_filename), "Expected filename to be created #{output_filename}"
-    assert_equal IO.read(fixture(fixture_name)), IO.read(output_filename), "Content generated into #{output_filename}"
   end
 end
