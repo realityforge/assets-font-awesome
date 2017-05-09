@@ -134,6 +134,8 @@ class Noft::TestCase < Minitest::Test
     FileUtils.mkdir_p directory
     in_dir(directory) do
       run_command('git init')
+      run_command("git config --local user.email \"user@example.org\"")
+      run_command("git config --local user.name \"A User\"")
       block.call(directory)
       run_command('git add *')
       run_command("git commit -m \"initial commit\"")
