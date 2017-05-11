@@ -13,6 +13,4 @@ before_install:
   - rvm use 2.3.1
   - gem install bundler
   - bundle install
-  - export PATH=$PATH:$(dirname `nvm which node`)
-  - ls -lR
-script: bundle exec buildr clean noft:all --trace ; git status ; git diff ; ls -lR; exit 33
+script: bundle exec buildr clean noft:all --trace ; git status; exit 33
