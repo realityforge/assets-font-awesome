@@ -11,4 +11,5 @@ before_install:
   - nvm use
   - gem update bundler
   - bundle install
+  - npm install
 script: buildr clean noft:all
