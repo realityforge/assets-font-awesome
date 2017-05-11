@@ -109,6 +109,9 @@ module Schmooze
       end
 
       def spawn_process
+        puts "@_schmooze_env=#{@_schmooze_env.inspect}"
+        puts "@_schmooze_code=#{@_schmooze_code.inspect}"
+        puts "@_schmooze_root=#{@_schmooze_root.inspect}"
         process_data = Open3.popen3(
           @_schmooze_env,
           'node',
@@ -154,7 +157,11 @@ module Schmooze
 
       def call_js_method(method, args)
         ensure_process_is_spawned
+
+        p JSON.dump([method, args])
+
         @_schmooze_stdin.puts JSON.dump([method, args])
+
         input = @_schmooze_stdout.gets
         raise Errno::EPIPE, "Can't read from stdout" if input.nil?
 
