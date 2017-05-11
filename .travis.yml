@@ -10,4 +10,5 @@ before_install:
   - nvm install v6.10.3
   - nvm use
   - gem update bundler
+  - bundle install
 script: buildr clean noft:all
