@@ -42,8 +42,6 @@ module Noft
         # all the files are written as it is the last file to be generated
         wait_until { File.exist?("#{output_directory}/verify.html") }
 
-        puts Dir["#{output_directory}/**"].join("\n")
-
         FileUtils.rm_f "#{output_directory}/verify.html"
         FileUtils.mv "#{output_directory}/source-font.ttf", "#{output_directory}/font.ttf"
         FileUtils.mv Dir["#{output_directory}/svg/*.svg"], output_directory
