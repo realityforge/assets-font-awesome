@@ -25,10 +25,6 @@ module Noft
         def target_key
           :icon_set
         end
-
-        def template_set_container
-          Noft::TemplateSetManager
-        end
       end
 
       artifact(:svg_assets, :guard => 'icon_set.font_file?') do |template_set, facets, helpers, template_options|
