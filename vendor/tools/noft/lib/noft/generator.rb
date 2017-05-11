@@ -37,7 +37,7 @@ module Noft
 
         # Actually run the font blast to extract out the svg files
         result = Noft::FontBlast.new('.').blast(icon_set.font_file, output_directory, { :filenames => filenames })
-        puts result
+        p result
 
         # Node writes the file asynchronously. This needs to be in place to ensure
         # all the files are written as it is the last file to be generated
