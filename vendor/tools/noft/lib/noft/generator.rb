@@ -79,6 +79,7 @@ module Noft
             sleep 1
           end
         end
+        Noft.error('Node failed to generate the required files within an expected time frame') unless block.call
       end
     end
   end
