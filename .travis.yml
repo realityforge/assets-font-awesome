@@ -14,4 +14,5 @@ before_install:
   - gem install bundler
   - bundle install
   - export PATH=$PATH:$(dirname `nvm which node`)
-script: bundle exec buildr clean noft:all --trace ; git status ; git diff
+  - ls -lR
+script: bundle exec buildr clean noft:all --trace ; git status ; git diff ; ls -lR; exit 33
