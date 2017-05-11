@@ -16,7 +16,7 @@ module Noft
   module Base
     class BaseRepository
       class << self
-        include Reality::Generators::ArtifactDSL
+        include Noft::ArtifactDSL
 
         def facet_key
           nil
@@ -27,7 +27,7 @@ module Noft
         end
 
         def template_set_container
-          Noft::Generator
+          Noft::TemplateSetManager
         end
       end
 

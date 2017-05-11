@@ -16,17 +16,15 @@ require 'json'
 require 'fileutils'
 require 'schmooze'
 
+require 'reality/mda'
 require 'reality/core'
 require 'reality/facets'
 require 'reality/generators'
 require 'reality/model'
 require 'reality/naming'
 
-require 'noft/core'
 require 'noft/model'
 require 'noft/generator'
-
-require 'noft/rake_tasks'
 
 require 'noft/base/templates/assets'
 require 'noft/base/model'

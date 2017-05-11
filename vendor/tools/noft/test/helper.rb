@@ -128,9 +128,10 @@ class Noft::TestCase < Minitest::Test
     assert_equal IO.read(fixture(fixture_name)), IO.read(output_filename), "Content generated into #{output_filename}"
   end
 
-  def run_generators(template_set_keys, icon_set, target_dir = local_dir(SecureRandom.hex), filter = nil)
-    templates = Noft::Generator.generator.load_templates_from_template_sets(template_set_keys)
-    Noft::Generator.generator.generate(:icon_set, icon_set, target_dir, templates, filter)
+  def run_generators(template_set_keys, icon_set, options = {})
+    target_dir = options[:target_dir] || local_dir(SecureRandom.hex)
+    filter = options[:filter]
+    Noft::TemplateSetManager.generator.generate(:icon_set, icon_set, target_dir, template_set_keys, filter)
     target_dir
   end
 

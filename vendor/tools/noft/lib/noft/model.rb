@@ -13,44 +13,10 @@
 #
 
 module Noft
-  module ArtifactDSL
-    include Reality::Generators::ArtifactDSL
-
-    def template_set_container
-      Noft::Generator
-    end
-  end
-
-  module FacetManager
-    extend Reality::Facets::FacetContainer
-  end
-
-  module Generator #nodoc
-    class << self
-      include Reality::Generators::TemplateSetContainer
-
-      def derive_default_helpers(options)
-        helpers = []
-        helpers
-      end
-    end
-  end
-
-  module Model #nodoc
-  end
-
-  FacetManager.extension_manager.singleton_extension(ArtifactDSL)
-
-  Reality::Model::Repository.new(:Noft,
-                                 Noft::Model,
-                                 :instance_container => Noft,
-                                 :facet_container => Noft::FacetManager,
-                                 :log_container => Noft) do |r|
+  Reality::Mda.define_system(Noft) do |r|
     r.model_element(:icon_set)
     r.model_element(:icon, :icon_set)
   end
-
-  Reality::Facets.copy_targets_to_generator_target_manager(Noft::Generator, Noft::FacetManager)
 
   class << self
     def read_model(filename)
