@@ -57,7 +57,7 @@ class Noft::TestCase < Minitest::Test
   end
 
   def create_filename(extension = '')
-    "#{working_dir}/#{SecureRandom.hex}#{extension}"
+    "#{working_dir}/#{::SecureRandom.hex}#{extension}"
   end
 
   def local_dir(directory)
@@ -65,7 +65,7 @@ class Noft::TestCase < Minitest::Test
   end
 
   def working_dir
-    @working_dir ||= "#{workspace_dir}/#{SecureRandom.hex}"
+    @working_dir ||= "#{workspace_dir}/#{::SecureRandom.hex}"
   end
 
   def workspace_dir
@@ -129,7 +129,7 @@ class Noft::TestCase < Minitest::Test
   end
 
   def run_generators(template_set_keys, icon_set, options = {})
-    target_dir = options[:target_dir] || local_dir(SecureRandom.hex)
+    target_dir = options[:target_dir] || local_dir(::SecureRandom.hex)
     filter = options[:filter]
     Noft::TemplateSetManager.generator.generate(:icon_set, icon_set, target_dir, template_set_keys, filter)
     target_dir

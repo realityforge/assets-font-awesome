@@ -8,5 +8,5 @@ git:
   depth: 10
 before_install:
   - nvm install v6.10.3
-  - nvm use
+  - nvm use v6.10.3
   - gem update bundler

@@ -62,8 +62,7 @@ module Noft
       # does not pass in a date.
       def reset_state_if_unchanged(output_directory)
         output = `git status -s #{output_directory}`
-        if output.split("\n").size == 1 &&
-          -1 != (output =~ /^ M (.*\/)font.ttf$/)
+        if output.split("\n").size == 1 && !(output =~ /^ M (.*\/)?font.ttf$/).nil?
           `git checkout #{output_directory}/font.ttf`
         end
       end
