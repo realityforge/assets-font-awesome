@@ -9,7 +9,8 @@ git:
 before_install:
   - nvm install v6.10.3
   - nvm use v6.10.3
-  - npm install
+  - npm install -g yarn
+  - yarn install
   - rvm use 2.3.1
   - gem install bundler
   - bundle install
