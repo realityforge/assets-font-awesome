@@ -17,11 +17,11 @@ GEM
     arrayfields (4.9.2)
     atoulme-Antwrap (0.7.5)
       rjb (>= 1.0.3)
-    braid (1.0.18)
+    braid (1.0.20)
       main (>= 4.7.3)
       open4 (>= 1.0.1)
     builder (3.2.2)
-    buildr (1.5.2)
+    buildr (1.5.3)
       atoulme-Antwrap (= 0.7.5)
       builder (= 3.2.2)
       bundler
@@ -81,9 +81,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  braid (= 1.0.18)
-  buildr (= 1.5.2)
+  braid (= 1.0.20)
+  buildr (= 1.5.3)
   noft (= 1.0.0)!
 
 BUNDLED WITH
-   1.13.6
+   1.14.6
