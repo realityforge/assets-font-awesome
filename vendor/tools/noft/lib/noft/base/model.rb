@@ -28,7 +28,22 @@ module Noft
       end
 
       artifact(:svg_assets, :guard => 'icon_set.font_file?') do |template_set, facets, helpers, template_options|
-        Noft::Base::AssetsTemplate.new(template_set, facets, self.target_key, 'svg_assets', helpers, template_options)
+        Noft::Base::AssetsTemplate.new(template_set,
+                                       facets,
+                                       self.target_key,
+                                       'svg_assets',
+                                       'assets/#{icon_set.name}',
+                                       helpers,
+                                       template_options)
+      end
+      artifact(:raw_assets, :guard => 'icon_set.font_file?') do |template_set, facets, helpers, template_options|
+        Noft::Base::AssetsTemplate.new(template_set,
+                                       facets,
+                                       self.target_key,
+                                       'svg_assets',
+                                       '',
+                                       helpers,
+                                       template_options)
       end
     end
   end

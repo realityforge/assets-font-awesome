@@ -54,12 +54,12 @@ module Noft
       end
 
       def read_from(data)
-        self.display_string = data['display_string'] if data['display_string']
+        self.display_string = data['displayString'] if data['displayString']
         self.description = data['description'] if data['description']
         self.version = data['version'] if data['version']
         self.url = data['url'] if data['url']
         self.license = data['license'] if data['license']
-        self.license_url = data['license_url'] if data['license_url']
+        self.license_url = data['licenseUrl'] if data['licenseUrl']
 
         data['icons'].each_pair do |icon_name, icon_data|
           self.icon(icon_name.to_sym).read_from(icon_data)
@@ -69,12 +69,12 @@ module Noft
       def to_h
         data = {}
         data[:name] = self.name
-        data[:display_string] = self.display_string if self.display_string
+        data[:displayString] = self.display_string if self.display_string
         data[:description] = self.description if self.description
         data[:version] = self.version if self.version
         data[:url] = self.url if self.url
         data[:license] = self.license if self.license
-        data[:license_url] = self.license_url if self.license_url
+        data[:licenseUrl] = self.license_url if self.license_url
 
         data[:icons] = {}
         self.icons.each do |icon|
@@ -104,8 +104,9 @@ module Noft
       end
 
       def read_from(data)
-        self.display_string = data['display_string'] if data['display_string']
+        self.display_string = data['displayString'] if data['displayString']
         self.description = data['description'] if data['description']
+        self.unicode = data['unicode'] if data['unicode']
         data['aliases'].each do |a|
           self.aliases << a
         end if data['aliases']
@@ -116,10 +117,11 @@ module Noft
 
       def to_h
         data = {}
-        data[:display_string] = self.display_string if self.display_string
+        data[:displayString] = self.display_string if self.display_string
         data[:description] = self.description if self.description
         data[:aliases] = self.aliases unless self.aliases.empty?
         data[:categories] = self.categories unless self.categories.empty?
+        data[:unicode] = self.unicode if self.unicode
 
         data
       end

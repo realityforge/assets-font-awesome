@@ -36,21 +36,22 @@ class TestModel < Noft::TestCase
     expected =
       {
         :name => :fa,
-        :display_string => 'Font Awesome',
+        :displayString => 'Font Awesome',
         :description => 'The iconic font and CSS toolkit',
         :version => '4.3.2',
         :url => 'http://fontawesome.io',
         :license => 'SIL Open Font License (OFL)',
-        :license_url => 'http://scripts.sil.org/OFL',
+        :licenseUrl => 'http://scripts.sil.org/OFL',
         :icons =>
           {
             :'map-marker' =>
               {
-                :display_string => 'The nice map marker',
+                :displayString => 'The nice map marker',
                 :aliases => %w(map-point poi),
-                :categories => ['Map Icons', 'Web App Icons']
+                :categories => ['Map Icons', 'Web App Icons'],
+                :unicode => 'f041'
               },
-            :cross => { :categories => ['Web App Icons'] } } }
+            :cross => { :categories => ['Web App Icons'], :unicode => 'f022' } } }
 
     assert_equal expected, icon_set.to_h
   end
@@ -96,8 +97,8 @@ class TestModel < Noft::TestCase
     assert_equal icon_set.name, icon_set_2.name
     assert_equal icon_set.to_h, icon_set_2.to_h
     assert_equal nil, icon_set_2.font_file
-    assert_equal nil, icon_set_2.icon_by_name('map-marker').unicode
-    assert_equal nil, icon_set_2.icon_by_name('cross').unicode
+    assert_equal 'f041', icon_set_2.icon_by_name('map-marker').unicode
+    assert_equal 'f022', icon_set_2.icon_by_name('cross').unicode
   end
 
   def test_font_file?
