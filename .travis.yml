@@ -14,4 +14,4 @@ before_install:
   - rvm use 2.3.1
   - gem install bundler
   - bundle install
-script: bundle exec buildr clean noft:all
+script: bundle exec vendor/tools/noft/bin/noft -g assets -t dist
