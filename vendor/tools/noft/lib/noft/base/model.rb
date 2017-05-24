@@ -36,7 +36,7 @@ module Noft
                                        helpers,
                                        template_options)
       end
-      artifact(:raw_assets, :guard => 'icon_set.font_file?') do |template_set, facets, helpers, template_options|
+      artifact(:assets, :guard => 'icon_set.font_file?') do |template_set, facets, helpers, template_options|
         Noft::Base::AssetsTemplate.new(template_set,
                                        facets,
                                        self.target_key,
