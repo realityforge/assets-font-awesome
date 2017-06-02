@@ -15,7 +15,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     arrayfields (4.9.2)
-    braid (1.0.20)
+    braid (1.0.21)
       main (>= 4.7.3)
       open4 (>= 1.0.1)
     chronic (0.10.2)
@@ -55,8 +55,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  braid (= 1.0.20)
+  braid (= 1.0.21)
   noft (= 1.0.0)!
 
 BUNDLED WITH
-   1.14.6
+   1.15.0
