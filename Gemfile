@@ -1,3 +1,3 @@
 source 'https://rubygems.org'
 
-gem 'noft', '= 1.0.0'
+gem 'noft', '= 1.0.1'
