@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    noft (1.0.1)
+    noft (1.0.2)
       reality-core (>= 1.8.0)
       reality-facets (>= 1.9.0)
       reality-generators (>= 1.14.0)
@@ -38,7 +38,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  noft (= 1.0.1)
+  noft (= 1.0.2)
 
 BUNDLED WITH
    1.15.1
