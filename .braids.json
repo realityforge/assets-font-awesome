@@ -1,7 +1,0 @@
-{
-  "vendor/tools/noft": {
-    "url": "https://github.com/realityforge/noft.git",
-    "branch": "master",
-    "revision": "820ed9f6f422f8db60e5aae15690c7a08decb9ab"
-  }
-}
