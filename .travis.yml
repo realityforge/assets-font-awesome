@@ -14,4 +14,4 @@ before_install:
   - rvm use 2.3.1
   - gem install bundler
   - bundle install
-script: bundle exec noft -g assets -t dist
+script: bundle exec noft -g assets -t dist --generators assets
