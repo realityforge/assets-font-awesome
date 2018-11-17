@@ -1,6 +1,6 @@
 # assets-font-awesome
 
-[![Build Status](https://secure.travis-ci.org/realityforge/assets-font-awesome.png?branch=master)](http://travis-ci.org/realityforge/assets-font-awesome)
+[![Build Status](https://secure.travis-ci.org/realityforge/assets-font-awesome.svg?branch=master)](http://travis-ci.org/realityforge/assets-font-awesome)
 
 This repository contains an export of the [Font Awesome](http://fontawesome.io) font icon library managed by the
 [Noft](https://github.com/realityforge/noft) tool.
